@@ -6,71 +6,90 @@
 #+REVEAL_MARGIN: 0.1
 #+REVEAL_MIN_SCALE: 0.5
 #+REVEAL_MAX_SCALE: 2.5
-#+OPTIONS: reveal_center:nil 
-#+OPTIONS: reveal_keyboard:t reveal_overview:t 
+#+OPTIONS: reveal_center:nil
+#+OPTIONS: reveal_keyboard:t reveal_overview:t
 #+REVEAL_TRANS: linear
 #+REVEAL_THEME: solarized
 #+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Title">
-* Slide with background image  
- :PROPERTIES:
-    :reveal_background: ./images/leiningen-slide-background.png
-    :reveal_background_trans: slide
-    :END:
+* Wer?
+  - Andreas Wurzer
+  - Java Entwickler bei der Novum am Tag
+  - "Alles außer Java" Entwickler in der Nacht
+* Was?
+  - Überwachung Internetverfügbarkeit
+  - Einschränkung: Raspberry Pi
+** Himbeer Kuchen?
+   Bild von RPI
+   - Computer in Kreditkartengröße ab 25€
+   - Niedriger Stromverbrauch
+   - https://www.raspberrypi.org
+* Warum?
+  - Erleichterung der Fehlersuche
+  - Erlernen neuer Techniken
+* Wie?
+  #+BEGIN_SRC ditaa :file images/netzwaechterlein.png
+     Sensoren                                 Endpunkte
 
-[[http://www.google.co.uk][hyperlink-text]]
-
-#+ATTR_REVEAL: :frag roll-in
-  - bulletpoint
-  - dont go crazy
-
-** Sub-slide - srolls vertically from slide above
-
-Some source code using hightlits.js 
-
-#+BEGIN_SRC clojure
-(def clojure-devs "love brackets")
-#+END_SRC
-
-* Slied with code 
-#+BEGIN_SRC zsh 
-  git init 
-#+END_SRC
-
-* Slide with Colour - overriding the theme 
-:PROPERTIES:
-    :reveal_background: #770000
-    :reveal_background_trans: slide
-    :END:
-
-I love red.
-
-#+ATTR_REVEAL: :frag hightlight-red
-Hightliht text as a fragment of the slide 
-
- 
-
-** Fragments in Reveal.js
-
- Press the "Down" key on the page or the down arrow to trigger fragments
-
-#+ATTR_REVEAL: :frag highlight-blue
-   * Create
-   * Fragment
-   * At Ease
-
-** Fragment captions   
-#+CAPTION: The Org text source.
-#+BEGIN_SRC org
-#+ATTR_REVEAL: :frag
-   * Create
-   * Fragment
-   * At Ease
-#+END_SRC
-
-** Reveal.js Can Alert
-   :PROPERTIES:
-   :reveal_data_state: alert
-   :END:
-
-   Change slide style to wake up the sleepy audience.
-
+ /------\
+ |      |                                    +---------+
+ |      v          Nachrichtenkanal     +--->| Browser |
+ |    :ping -+                          |    |         |
+ |           |    +-----------------+   |    +---------+
+ |           +--->+ :ping :dns ...  +---+
+ |           |    +-----------------+   |    +---------+
+ |    :dns --+                          |    |{s}      |
+ |           |                          +--->|   DB    |
+ |     ... --+                          |    +---------+
+ |      |                               |
+ \------/                               +---> ...
+Periodische
+  Abfrage
+  #+END_SRC
+  #+BEGIN_NOTES
+- Periodische Überprüfungen
+ - Ping
+ - DNS Lookup
+- Persistierung
+ - Datenbank
+- Darstellung
+ - Browser
+  - Aktueller Zustand
+  - Auswertungen
+  - Statistiken
+- Andere Endpunkte
+ - SMS bei Ausfall
+  #+END_NOTES
+** Nachrichten
+   Erfolg
+   #+BEGIN_SRC clojure
+{:type :dns :status :ok :timestamp 1445021224910}
+   #+END_SRC
+   Fehler
+   #+BEGIN_SRC clojure
+{:type :ping :status :error :message "Timeout" :timestamp 1445021225127}
+   #+END_SRC
+* Technik
+  - Plattform: Node.js
+  - Sprache: ClojureScript
+** Node.js
+   - Läuft am Raspberry Pi
+   https://nodejs.org
+   #+BEGIN_NOTES
+Weniger ressourcenintensiv als Java
+   #+END_NOTES
+** ClojureScript
+   Logo von ClojureScript
+   - LISP Dialekt
+   - wird nach JavaScript übersetzt
+   https://github.com/clojure/clojurescript
+   #+BEGIN_NOTES
+Parentheses
+   #+END_NOTES
+   #+BEGIN_NOTES
+nicht der einzige Vertreter
+unter anderem CoffeeScript, TypeScript, Scala
+   #+END_NOTES
+* Live Demo
+* Fragen?!
+* Danke für die Aufmerksamkeit
+  https://github.com/andeee/netzwaechterlein
