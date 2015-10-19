@@ -16,23 +16,32 @@
   - Java Entwickler bei der Novum am Tag
   - "Alles außer Java" Entwickler in der Nacht
 * Was?
+  [[file:images/server_not_found.png]]
   - Überwachung Internetverfügbarkeit
-  - Einschränkung: Raspberry Pi
-** Himbeer Kuchen?
-   Bild von RPI
-   - Computer in Kreditkartengröße ab 25€
-   - Niedriger Stromverbrauch
-   - https://www.raspberrypi.org
 * Warum?
-  - Erleichterung der Fehlersuche
+  - Erleichterung der Fehlersuche durch Automatisierung
+  - Statistiken über Verfügbarkeit
+  - Aktive Information an Benutzer
   - Erlernen neuer Techniken
 * Wie?
-  #+BEGIN_SRC ditaa :file images/netzwaechterlein.png
-     Sensoren                                 Endpunkte
+** Mögliche Ursachen
+   - Server im Internet antwortet nicht
+   - Namensauflösung (DNS) funktioniert nicht
+** Idee
+   - Periodische Abfragen auf
+     - Erreichbarkeit eines Server (ping)
+     - Funktionieren der Namensauflösung (nslookup)
+   - Ergebnisse
+     - Speichern
+     - Veröffentlichen
+     - Aktiv informieren
+** Realisierung
+   #+BEGIN_SRC ditaa :file images/netzwaechterlein.png
+     Sensoren                                 Empfänger
 
  /------\
  |      |                                    +---------+
- |      v          Nachrichtenkanal     +--->| Browser |
+ |      v            Ergebniskanal      +--->| Browser |
  |    :ping -+                          |    |         |
  |           |    +-----------------+   |    +---------+
  |           +--->+ :ping :dns ...  +---+
@@ -44,46 +53,41 @@
  \------/                               +---> ...
 Periodische
   Abfrage
-  #+END_SRC
-  #+BEGIN_NOTES
-- Periodische Überprüfungen
- - Ping
- - DNS Lookup
-- Persistierung
- - Datenbank
-- Darstellung
- - Browser
-  - Aktueller Zustand
-  - Auswertungen
-  - Statistiken
-- Andere Endpunkte
- - SMS bei Ausfall
-  #+END_NOTES
-** Nachrichten
-   Erfolg
+   #+END_SRC
+** Ergebnisse
+   - Erfolg
    #+BEGIN_SRC clojure
 {:type :dns :status :ok :timestamp 1445021224910}
    #+END_SRC
-   Fehler
+   - Fehler
    #+BEGIN_SRC clojure
 {:type :ping :status :error :message "Timeout" :timestamp 1445021225127}
    #+END_SRC
 * Technik
+  - Hardware: Plattformunabhängig, Raspberry Pi möglich
   - Plattform: Node.js
   - Sprache: ClojureScript
+** Himbeer Kuchen?
+   [[file:images/rpi-small.png]]
+   - Computer in Kreditkartengröße ab 25€
+   - Niedriger Stromverbrauch
+   - https://www.raspberrypi.org
 ** Node.js
+   - Serverseitiges JavaScript
    - Läuft am Raspberry Pi
    https://nodejs.org
    #+BEGIN_NOTES
 Weniger ressourcenintensiv als Java
    #+END_NOTES
 ** ClojureScript
-   Logo von ClojureScript
+   [[file:images/cljs-small.png]]
    - LISP Dialekt
    - wird nach JavaScript übersetzt
    https://github.com/clojure/clojurescript
    #+BEGIN_NOTES
 Parentheses
+Code is Data
+Macros
    #+END_NOTES
    #+BEGIN_NOTES
 nicht der einzige Vertreter
