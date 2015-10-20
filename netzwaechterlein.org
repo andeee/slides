@@ -94,6 +94,7 @@ nicht der einzige Vertreter
 unter anderem CoffeeScript, TypeScript, Scala
    #+END_NOTES
 * Live Demo
-* Fragen?!
-* Danke für die Aufmerksamkeit
-  https://github.com/andeee/netzwaechterlein
+* Weitere Infos
+  - https://github.com/andeee/netzwaechterlein
+  - https://github.com/andeee/slides
+  - http://andeee.at/slides/netzwaechterlein.html
