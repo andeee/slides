@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Netzwächterlein</title>
+<meta name="author" content="(Andreas Wurzer)"/>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="./reveal.js/css/theme/solarized.css" id="theme"/>
+<link rel="stylesheet" href=""/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<meta name="description" content="Title">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1>Netzwächterlein</h1>
+<h2>Andreas Wurzer</h2>
+<h2><a href="mailto:andreas.wurzer@novum-ccservices.at">andreas.wurzer@novum-ccservices.at</a></h2>
+<h2></h2>
+</section>
+<section>
+<section id="slide-orgheadline1">
+<h2 id="orgheadline1">Wer?</h2>
+<ul>
+<li>Andreas Wurzer</li>
+<li>Java Entwickler bei der Novum am Tag</li>
+<li>"Alles außer Java" Entwickler in der Nacht</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline2">
+<h2 id="orgheadline2">Was?</h2>
+<ul>
+<li>Überwachung Internetverfügbarkeit</li>
+
+</ul>
+
+<div class="figure">
+<p><img src="images/server_not_found.png" alt="server_not_found.png" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline3">
+<h2 id="orgheadline3">Warum?</h2>
+<ul>
+<li>Erleichterung der Fehlersuche durch Automatisierung</li>
+<li>Statistiken über Verfügbarkeit</li>
+<li>Aktive Information an Benutzer</li>
+<li>Erlernen neuer Techniken</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline8">
+<h2 id="orgheadline8">Wie?</h2>
+<div class="outline-text-2" id="text-orgheadline8">
+</div></section>
+<section id="slide-orgheadline4">
+<h3 id="orgheadline4">Mögliche Ursachen</h3>
+<ul>
+<li>Server im Internet antwortet nicht</li>
+<li>Namensauflösung (DNS) funktioniert nicht</li>
+
+</ul>
+</section>
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">Idee</h3>
+<ul>
+<li>Periodische Abfragen auf
+<ul>
+<li>Erreichbarkeit eines Server (ping)</li>
+<li>Funktionieren der Namensauflösung (nslookup)</li>
+
+</ul></li>
+<li>Ergebnisse
+<ul>
+<li>Speichern</li>
+<li>Veröffentlichen</li>
+<li>Aktiv informieren</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-orgheadline6">
+<h3 id="orgheadline6">Realisierung</h3>
+
+<div class="figure">
+<p><img src="images/netzwaechterlein.png" alt="netzwaechterlein.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline7">
+<h3 id="orgheadline7">Ergebnisse</h3>
+<ul>
+<li>Erfolg</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #2aa198;">{</span><span style="color: #268bd2; font-weight: bold;">:type</span> <span style="color: #268bd2; font-weight: bold;">:dns</span> <span style="color: #268bd2; font-weight: bold;">:status</span> <span style="color: #268bd2; font-weight: bold;">:ok</span> <span style="color: #268bd2; font-weight: bold;">:timestamp</span> 1445021224910<span style="color: #2aa198;">}</span>
+</pre>
+</div>
+<ul>
+<li>Fehler</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><span style="color: #2aa198;">{</span><span style="color: #268bd2; font-weight: bold;">:type</span> <span style="color: #268bd2; font-weight: bold;">:ping</span> <span style="color: #268bd2; font-weight: bold;">:status</span> <span style="color: #268bd2; font-weight: bold;">:error</span> <span style="color: #268bd2; font-weight: bold;">:message</span> <span style="color: #2aa198;">"Timeout"</span> <span style="color: #268bd2; font-weight: bold;">:timestamp</span> 1445021225127<span style="color: #2aa198;">}</span>
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline12">
+<h2 id="orgheadline12">Technik</h2>
+<ul>
+<li>Hardware: Plattformunabhängig, Raspberry Pi möglich</li>
+<li>Plattform: Node.js</li>
+<li>Sprache: ClojureScript</li>
+
+</ul>
+</section>
+<section id="slide-orgheadline9">
+<h3 id="orgheadline9">Himbeer Kuchen?</h3>
+
+<div class="figure">
+<p><img src="images/rpi-small.png" alt="rpi-small.png" />
+</p>
+</div>
+<ul>
+<li>Computer in Kreditkartengröße ab 25€</li>
+<li>Niedriger Stromverbrauch</li>
+<li><a href="https://www.raspberrypi.org/">https://www.raspberrypi.org/</a></li>
+
+</ul>
+</section>
+<section id="slide-orgheadline10">
+<h3 id="orgheadline10">Node.js</h3>
+<ul>
+<li>Serverseitiges JavaScript</li>
+<li>Läuft am Raspberry Pi</li>
+
+</ul>
+<p>
+<a href="https://nodejs.org/">https://nodejs.org/</a>
+</p>
+<aside class="notes">
+<p>
+Weniger ressourcenintensiv als Java
+</p>
+
+</aside>
+</section>
+<section id="slide-orgheadline11">
+<h3 id="orgheadline11">ClojureScript</h3>
+
+<div class="figure">
+<p><img src="images/cljs-small.png" alt="cljs-small.png" />
+</p>
+</div>
+<ul>
+<li>LISP Dialekt</li>
+<li>wird nach JavaScript übersetzt</li>
+
+</ul>
+<p>
+<a href="https://github.com/clojure/clojurescript">https://github.com/clojure/clojurescript</a>
+</p>
+<aside class="notes">
+<p>
+Parentheses
+Code is Data
+Macros
+</p>
+
+</aside>
+<aside class="notes">
+<p>
+nicht der einzige Vertreter
+unter anderem CoffeeScript, TypeScript, Scala
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline13">
+<h2 id="orgheadline13">Live Demo</h2>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline14">
+<h2 id="orgheadline14">Fragen?!</h2>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline15">
+<h2 id="orgheadline15">Danke für die Aufmerksamkeit</h2>
+<p>
+<a href="https://github.com/andeee/netzwaechterlein">https://github.com/andeee/netzwaechterlein</a>
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: false,
+slideNumber: true,
+rollingLinks: false,
+keyboard: true,
+overview: true,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
